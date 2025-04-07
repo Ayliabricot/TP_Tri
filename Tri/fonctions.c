@@ -59,6 +59,14 @@ Medicament* creerMedicament(void) {
 }
 
 void afficher(Medicament** tableau, int taille) {
+	if (tableau == NULL) {
+		return;
+	}
+	for (int i = 0; i < taille; i++) {
+		if (tableau[i] == NULL) {
+			return;
+		}
+	}
 	for (int i = 0; i < taille; i++) {
 		printf("\nNom : %s | Code : %s | Fabrication : %d | Peremption : %d | Prix : %.2f | Vendus : %d | Stock : %d", tableau[i]->nom, tableau[i]->code, tableau[i]->fabrication, tableau[i]->peremption, tableau[i]->prix, tableau[i]->vendus, tableau[i]->stock);
 	}
@@ -71,6 +79,14 @@ void tri_a_bulles_optimise(Medicament** T, int taille) {
 	int n2;
 	int swapped;
 
+	if (T == NULL) {
+		return;
+	}
+	for (int i = 0; i < taille; i++) {
+		if (T[i] == NULL) {
+			return;
+		}
+	}
 	for (i = 0; i < taille - 1; i++) {
 		printf("\n");
 		swapped = 0;
@@ -109,6 +125,14 @@ void tri_a_bulles_nom(Medicament** T, int taille) {
 	int i, j;
 	int swapped;
 
+	if (T == NULL) {
+		return;
+	}
+	for (int i = 0; i < taille; i++) {
+		if (T[i] == NULL) {
+			return;
+		}
+	}
 	for (i = 0; i < taille - 1; i++) {
 		printf("\n");
 		swapped = 0;
@@ -136,6 +160,14 @@ void dichotomie(Medicament** tableau, int taille, char nom[50]) {
 	int debut = 0;
 	int fin = n;
 	int milieu;
+	if (tableau == NULL) {
+		return;
+	}
+	for (int i = 0; i < taille; i++) {
+		if (tableau[i] == NULL) {
+			return;
+		}
+	}
 	while (trouver != 1 && debut <= n) {
 		milieu = (debut + fin) / 2;
 		if (strcmp(tableau[milieu]->nom, nom) == 0) {
