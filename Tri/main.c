@@ -9,10 +9,14 @@ int main() {
 	
 	for (int i = 0; i < taille; i++) {
 		tableau[i] = creerMedicament();
+		printf("\n\n");
 	}
 
 	afficher(tableau,taille);
 	
+	tri_a_bulles_optimise(tableau, taille);
+
+	afficher(tableau, taille);
 
 	return 0;
 }

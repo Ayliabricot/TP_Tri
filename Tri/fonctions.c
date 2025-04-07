@@ -20,7 +20,7 @@ Medicament* creerMedicament(void) {
 	int vendus;
 	int stock;
 
-	printf("\n\nVeuillez saisir le nom : ");
+	printf("Veuillez saisir le nom : ");
 	scanf_s("%s", &nom, sizeof(nom));
 
 	printf("Veuillez saisir le code : ");
@@ -70,34 +70,35 @@ void tri_a_bulles_optimise(Medicament** T, int taille) {
 	int n1;
 	int n2;
 	int swapped;
+
 	for (i = 0; i < taille - 1; i++) {
-		swapped = 1;
+		printf("\n");
+		swapped = 0;
 		for (j = 0; j < taille - 1; j++) {
 			n1 = T[j + 1]->peremption % 10000;
 			n2 = T[j]->peremption % 10000;
 			if (n1 < n2) {
-				swap(&T[j], &T[j + 1]);
+				swap(T[j], T[j + 1]);
 				swapped = 1;
 			}
 			else if (n1 == n2) {
 				n1 = (T[j + 1]->peremption / 10000)%100;
 				n2 = (T[j]->peremption / 10000) % 100;
 				if (n1 < n2) {
-					swap(&T[j], &T[j + 1]);
+					swap(T[j], T[j + 1]);
 					swapped = 1;
 				}
 				else if (n1 == n2) {
 					n1 = (T[j + 1]->peremption / 10000) / 100;
 					n2 = (T[j]->peremption / 10000) / 100;
 					if (n1 < n2) {
-						swap(&T[j], &T[j + 1]);
+						swap(T[j], T[j + 1]);
 						swapped = 1;
 					}
 				}
 			}
-			afficher(T, taille);
+			printf("\n");
 		}
-		printf("\n");
 		if (swapped == 0) {
 			break;
 		}
