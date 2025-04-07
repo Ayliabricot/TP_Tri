@@ -214,3 +214,26 @@ void plusCher(Medicament** tableau,int taille) {
 	}
 	printf("\nLe medicament le plus cher est le %s", plus_cher->nom);
 }
+
+void taux(Medicament** tableau, int taille) {
+	if (tableau == NULL) {
+		return;
+	}
+	for (int i = 0; i < taille; i++) {
+		if (tableau[i] == NULL) {
+			return;
+		}
+	}
+	
+	int total=0;
+	int vendus=0;
+
+	for (int i = 0; i < taille; i++) {
+		total = total + tableau[i]->vendus + tableau[i]->stock;
+		vendus = vendus + tableau[i]->vendus;
+	}
+
+	int taux = (100 * vendus) / total;
+
+	printf("\nLe taux est de %d%%", taux);
+}

@@ -21,5 +21,7 @@ int main() {
 	dichotomie(tableau, taille, "spasfon");
 	plusCher(tableau, taille);
 
+	taux(tableau, taille);
+
 	return 0;
 }
