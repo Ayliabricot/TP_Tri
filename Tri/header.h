@@ -15,7 +15,9 @@ Medicament** creerTableau(int taille);
 Medicament* creerMedicament(void);
 void afficher(Medicament** tableau, int taille);
 
+void tri_a_bulles_nom(Medicament** T, int taille);
 void tri_a_bulles_optimise(Medicament** T, int taille);
 void swap(Medicament* i, Medicament* j);
+
 
 #endif

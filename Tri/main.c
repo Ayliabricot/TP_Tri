@@ -4,7 +4,7 @@
 
 int main() {
 	
-	int taille = 80;
+	int taille = 3;
 	Medicament** tableau = creerTableau(taille);
 	
 	for (int i = 0; i < taille; i++) {
@@ -14,7 +14,7 @@ int main() {
 
 	afficher(tableau,taille);
 	
-	tri_a_bulles_optimise(tableau, taille);
+	tri_a_bulles_nom(tableau, taille);
 
 	afficher(tableau, taille);
 

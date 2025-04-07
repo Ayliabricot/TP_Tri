@@ -105,6 +105,25 @@ void tri_a_bulles_optimise(Medicament** T, int taille) {
 	}
 }
 
+void tri_a_bulles_nom(Medicament** T, int taille) {
+	int i, j;
+	int swapped;
+
+	for (i = 0; i < taille - 1; i++) {
+		printf("\n");
+		swapped = 0;
+		for (j = 0; j < taille - 1; j++) {
+			if (strcmp(T[j+1],T[j])<0) {
+				swap(T[j], T[j + 1]);
+				swapped = 1;
+			}
+		}
+		if (swapped == 0) {
+			break;
+		}
+	}
+}
+
 void swap(Medicament* i, Medicament* j) {
 	Medicament temp = *i;
 	*i = *j;
