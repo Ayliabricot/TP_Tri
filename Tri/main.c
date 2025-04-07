@@ -4,7 +4,7 @@
 
 int main() {
 	
-	int taille = 3;
+	int taille = 80;
 	Medicament** tableau = creerTableau(taille);
 	
 	for (int i = 0; i < taille; i++) {
@@ -17,6 +17,8 @@ int main() {
 	tri_a_bulles_nom(tableau, taille);
 
 	afficher(tableau, taille);
+
+	dichotomie(tableau, taille, "paracetamol");
 
 	return 0;
 }

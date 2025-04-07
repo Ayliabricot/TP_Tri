@@ -129,3 +129,29 @@ void swap(Medicament* i, Medicament* j) {
 	*i = *j;
 	*j = temp;
 }
+
+void dichotomie(Medicament** tableau, int taille, char nom[50]) {
+	int n = taille - 1;
+	int trouver = 0;
+	int debut = 0;
+	int fin = n;
+	int milieu;
+	while (trouver != 1 && debut <= n) {
+		milieu = (debut + fin) / 2;
+		if (strcmp(tableau[milieu]->nom, nom) == 0) {
+			trouver = 1;
+		}
+		else if (strcmp(tableau[milieu]->nom, nom) < 0){
+			debut = milieu + 1;
+		}
+		else{
+			fin = milieu - 1;
+		}
+	}
+	if (trouver == 1) {
+		printf("\n\nLe medicament %s est au rang %d du tableau.", nom, milieu+1);
+	}
+	else {
+		printf("\n\nLe medicament n'est pas dans le tableau.");
+	}
+}

@@ -19,5 +19,6 @@ void tri_a_bulles_nom(Medicament** T, int taille);
 void tri_a_bulles_optimise(Medicament** T, int taille);
 void swap(Medicament* i, Medicament* j);
 
+void dichotomie(Medicament** tableau, int taille, char nom[50]);
 
 #endif
