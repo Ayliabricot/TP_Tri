@@ -18,7 +18,8 @@ int main() {
 
 	afficher(tableau, taille);
 
-	dichotomie(tableau, taille, "paracetamol");
+	dichotomie(tableau, taille, "spasfon");
+	plusCher(tableau, taille);
 
 	return 0;
 }

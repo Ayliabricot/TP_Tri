@@ -166,6 +166,7 @@ void dichotomie(Medicament** tableau, int taille, char nom[50]) {
 	int debut = 0;
 	int fin = n;
 	int milieu;
+
 	if (tableau == NULL) {
 		return;
 	}
@@ -186,10 +187,30 @@ void dichotomie(Medicament** tableau, int taille, char nom[50]) {
 			fin = milieu - 1;
 		}
 	}
+
 	if (trouver == 1) {
-		printf("\n\nLe medicament %s est au rang %d du tableau.", nom, milieu+1);
+		printf("\n\nLe medicament %s est au rang %d du tableau", nom, milieu+1);
 	}
 	else {
-		printf("\n\nLe medicament n'est pas dans le tableau.");
+		printf("\n\nLe medicament n'est pas dans le tableau");
 	}
+}
+
+void plusCher(Medicament** tableau,int taille) {
+	if (tableau == NULL) {
+		return;
+	}
+	for (int i = 0; i < taille; i++) {
+		if (tableau[i] == NULL) {
+			return;
+		}
+	}
+
+	Medicament* plus_cher = tableau[0];
+	for (int i = 1; i < taille; i++) {
+		if (tableau[i]->prix > plus_cher->prix) {
+			plus_cher = tableau[i];
+		}
+	}
+	printf("\nLe medicament le plus cher est le %s", plus_cher->nom);
 }
