@@ -149,6 +149,12 @@ void tri_a_bulles_nom(Medicament** T, int taille) {
 }
 
 void swap(Medicament* i, Medicament* j) {
+	if (i == NULL) {
+		return;
+	}
+	if (j == NULL) {
+		return;
+	}
 	Medicament temp = *i;
 	*i = *j;
 	*j = temp;
