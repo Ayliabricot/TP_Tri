@@ -4,7 +4,7 @@
 
 int main() {
 
-	int taille = 3;
+	int taille = 100;
 
 	Etudiant** tableau = creerTableau(taille);
 
@@ -14,6 +14,11 @@ int main() {
 	}
 
 	afficher(tableau,taille);
+
+	qsort(tableau, taille, sizeof(Etudiant*), comp_moyenne);
+
+	printf("\n\nPar ordre de mérite :\n");
+	afficher(tableau, taille);
 
 	return 0;
 }

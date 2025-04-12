@@ -44,6 +44,7 @@ Etudiant* creerEtudiant(void) {
 }
 
 void afficher(Etudiant** tableau, int taille) {
+    printf("\nListe d'eleves:\n");
     if (tableau == NULL || taille == 0) {
         return;
     }
@@ -54,5 +55,17 @@ void afficher(Etudiant** tableau, int taille) {
     }
     for (int i = 0; i < taille; i++) {
         printf("\nNom : %s | Prenom : %s | Matricule : %s | Moyenne : %.2f", tableau[i]->nom, tableau[i]->prenom, tableau[i]->matricule, tableau[i]->moyenne);
+    }
+}
+
+int comp_moyenne(const void* a, const void* b) {
+    Etudiant* etudiantA = *(Etudiant**)a;
+    Etudiant* etudiantB = *(Etudiant**)b;
+
+    if (etudiantA->moyenne > etudiantB->moyenne) {
+        return -1;
+    }
+    if (etudiantA->moyenne < etudiantB->moyenne) {
+        return 1;
     }
 }
