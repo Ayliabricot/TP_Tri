@@ -14,5 +14,8 @@ Etudiant* creerEtudiant(void);
 void afficher(Etudiant** tableau, int taille);
 
 int comp_moyenne(const void* a, const void* b);
+void tri_insertion(Etudiant** tableau, int taille);
+
+void libererMemoire(Etudiant** tableau, int taille);
 
 #endif

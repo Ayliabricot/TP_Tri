@@ -69,3 +69,34 @@ int comp_moyenne(const void* a, const void* b) {
         return 1;
     }
 }
+
+void tri_insertion(Etudiant** tableau, int taille) {
+    if (tableau == NULL) {
+        return;
+    }
+    for (int i = 0; i < taille; i++) {
+        if (tableau[i] == NULL) {
+            return;
+        }
+    }
+    Etudiant* x=NULL;
+    int j;
+    for (int i = 1; i < taille; i++) {
+        x = tableau[i];
+        j = i;
+        while (j > 0 && strcmp(tableau[j - 1]->nom, x->nom)>0) {
+            tableau[j] = tableau[j - 1];
+            j = j - 1;
+        }
+        tableau[j] = x;
+    }
+}
+
+void libererMemoire(Etudiant** tableau, int taille) {
+    for (int i = 0; i < taille; i++) {
+        free(tableau[i]);
+        tableau[i] = NULL;
+    }
+    free(tableau);
+    tableau = NULL;
+}

@@ -15,10 +15,12 @@ int main() {
 
 	afficher(tableau,taille);
 
-	qsort(tableau, taille, sizeof(Etudiant*), comp_moyenne);
+	tri_insertion(tableau, taille);
 
-	printf("\n\nPar ordre de mérite :\n");
+	printf("\n\nPar ordre alphabetique :\n");
 	afficher(tableau, taille);
+
+	libererMemoire(tableau, taille);
 
 	return 0;
 }
