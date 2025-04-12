@@ -3,6 +3,9 @@
 #include "header.h"
 
 void tableauTrie(int* T1, int* T2, int* T3,int taille1, int taille2) {
+	if (T1 == NULL || T2 == NULL || T3 == NULL || taille1<=0 || taille2<=0) {
+		return;
+	}
 	int taille3 = 0;
 	int i=0;
 	int j = 0;
@@ -25,6 +28,9 @@ void tableauTrie(int* T1, int* T2, int* T3,int taille1, int taille2) {
 }
 
 void afficher(int* T, int taille) {
+	if (T == NULL) {
+		return;
+	}
 	for (int i = 0; i < taille; i++) {
 		printf("%d ", T[i]);
 	}
