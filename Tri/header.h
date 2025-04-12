@@ -9,19 +9,18 @@ typedef struct {
 	float prix;
 	int vendus;
 	int stock;
+	struct Medicament* precedent;
+	struct Medicament* suivant;
 }Medicament;
 
 Medicament** creerTableau(int taille);
 Medicament* creerMedicament(void);
-void afficher(Medicament** tableau, int taille);
 
-void tri_a_bulles_nom(Medicament** T, int taille);
-void tri_a_bulles_optimise(Medicament** T, int taille);
+void ajouter(Medicament** medicaments, Medicament* nouveau);
+void afficher(Medicament* tableau);
+
+void tri_a_bulles_code(Medicament** medicament, int taille, int* swap);
+Medicament* comparer(Medicament** med1, Medicament** med2, int* swapped);
 void swap(Medicament* i, Medicament* j);
-
-void dichotomie(Medicament** tableau, int taille, char nom[50]);
-
-void plusCher(Medicament** tableau, int taille);
-void taux(Medicament** tableau, int taille);
 
 #endif

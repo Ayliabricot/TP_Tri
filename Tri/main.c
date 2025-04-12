@@ -5,23 +5,28 @@
 int main() {
 	
 	int taille = 80;
-	Medicament** tableau = creerTableau(taille);
+	int* swapped = malloc(sizeof(int));
+	*swapped = 0;
+
+	Medicament** L = creerTableau(taille);
 	
 	for (int i = 0; i < taille; i++) {
-		tableau[i] = creerMedicament();
+		ajouter(L, creerMedicament());
 		printf("\n\n");
 	}
 
-	afficher(tableau,taille);
+	afficher(*L);
 	
-	tri_a_bulles_nom(tableau, taille);
+	tri_a_bulles_code(L, taille,swapped);
 
-	afficher(tableau, taille);
+	afficher(*L);
 
-	dichotomie(tableau, taille, "spasfon");
-	plusCher(tableau, taille);
-
-	taux(tableau, taille);
+	for (int i = 0; i < taille; i++) {
+		free(L[i]);
+		L[i] = NULL;
+	}
+	free(L);
+	L = NULL;
 
 	return 0;
 }

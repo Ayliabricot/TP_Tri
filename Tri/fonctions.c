@@ -54,98 +54,71 @@ Medicament* creerMedicament(void) {
 	medicament->prix = prix;
 	medicament->vendus = vendus;
 	medicament->stock = stock;
+	medicament->precedent = NULL;
+	medicament->suivant = NULL;
 
 	return medicament;
 }
 
-void afficher(Medicament** tableau, int taille) {
-	if (tableau == NULL) {
+void ajouter(Medicament** medicaments, Medicament* nouveau) {
+	if (nouveau==NULL) {
 		return;
 	}
-	for (int i = 0; i < taille; i++) {
-		if (tableau[i] == NULL) {
-			return;
-		}
+	if (*medicaments == NULL) {
+		*medicaments = nouveau;
+		return;
 	}
-	for (int i = 0; i < taille; i++) {
-		printf("\nNom : %s | Code : %s | Fabrication : %d | Peremption : %d | Prix : %.2f | Vendus : %d | Stock : %d", tableau[i]->nom, tableau[i]->code, tableau[i]->fabrication, tableau[i]->peremption, tableau[i]->prix, tableau[i]->vendus, tableau[i]->stock);
+	else if ((*medicaments)->suivant == NULL) {
+		nouveau->precedent = *medicaments;
+		(*medicaments)->suivant = nouveau;
+	}
+	else {
+		ajouter(&(*medicaments)->suivant, nouveau);
 	}
 }
 
-
-void tri_a_bulles_optimise(Medicament** T, int taille) {
-	int i, j;
-	int n1;
-	int n2;
-	int swapped;
-
-	if (T == NULL) {
+void afficher(Medicament* med) {
+	if (med == NULL) {
 		return;
 	}
-	for (int i = 0; i < taille; i++) {
-		if (T[i] == NULL) {
-			return;
-		}
+	else{
+		printf("\nNom : %s | Code : %s | Fabrication : %d | Peremption : %d | Prix : %.2f | Vendus : %d | Stock : %d", med->nom, med->code, med->fabrication, med->peremption, med->prix, med->vendus, med->stock);
+		afficher(med->suivant);
 	}
-	for (i = 0; i < taille - 1; i++) {
+}
+
+void tri_a_bulles_code(Medicament** medicament, int taille, int* swapped) {
+	
+	
+
+	if (medicament == NULL || *medicament == NULL || (*medicament)->suivant==NULL) {
+		return;
+	}
+	
+	for (int i = 0; i < taille - 1; i++) {
 		printf("\n");
-		swapped = 0;
-		for (j = 0; j < taille - 1; j++) {
-			n1 = T[j + 1]->peremption % 10000;
-			n2 = T[j]->peremption % 10000;
-			if (n1 < n2) {
-				swap(T[j], T[j + 1]);
-				swapped = 1;
-			}
-			else if (n1 == n2) {
-				n1 = (T[j + 1]->peremption / 10000)%100;
-				n2 = (T[j]->peremption / 10000) % 100;
-				if (n1 < n2) {
-					swap(T[j], T[j + 1]);
-					swapped = 1;
-				}
-				else if (n1 == n2) {
-					n1 = (T[j + 1]->peremption / 10000) / 100;
-					n2 = (T[j]->peremption / 10000) / 100;
-					if (n1 < n2) {
-						swap(T[j], T[j + 1]);
-						swapped = 1;
-					}
-				}
-			}
-			printf("\n");
-		}
+		*swapped = 0;
+		*medicament = comparer(&(*medicament), &(*medicament)->suivant, swapped);
 		if (swapped == 0) {
 			break;
 		}
 	}
 }
 
-void tri_a_bulles_nom(Medicament** T, int taille) {
-	int i, j;
-	int swapped;
-
-	if (T == NULL) {
-		return;
+Medicament* comparer(Medicament** med1, Medicament** med2, int* swapped) {
+	if (*med1 == NULL || *med2 == NULL) {
+		return NULL;
 	}
-	for (int i = 0; i < taille; i++) {
-		if (T[i] == NULL) {
-			return;
-		}
+	if (strcmp((*med2)->code, (*med1)->code) < 0) {
+		*swapped = 1;
+		swap(*med1, *med2);
+		*med1 = (*med1)->precedent;
+		comparer(&(*med1)->suivant, &(*med2), swapped);
 	}
-	for (i = 0; i < taille - 1; i++) {
-		printf("\n");
-		swapped = 0;
-		for (j = 0; j < taille - 1; j++) {
-			if (strcmp(T[j+1],T[j])<0) {
-				swap(T[j], T[j + 1]);
-				swapped = 1;
-			}
-		}
-		if (swapped == 0) {
-			break;
-		}
+	else {
+		comparer(&(*med2), &(*med2)->suivant, swapped);
 	}
+	return *med1;
 }
 
 void swap(Medicament* i, Medicament* j) {
@@ -155,85 +128,11 @@ void swap(Medicament* i, Medicament* j) {
 	if (j == NULL) {
 		return;
 	}
+	i->suivant = j->suivant;
+	j->precedent = i->precedent;
+	j->suivant = i;
+	i->precedent = j;
 	Medicament temp = *i;
-	*i = *j;
-	*j = temp;
-}
-
-void dichotomie(Medicament** tableau, int taille, char nom[50]) {
-	int n = taille - 1;
-	int trouver = 0;
-	int debut = 0;
-	int fin = n;
-	int milieu;
-
-	if (tableau == NULL) {
-		return;
-	}
-	for (int i = 0; i < taille; i++) {
-		if (tableau[i] == NULL) {
-			return;
-		}
-	}
-	while (trouver != 1 && debut <= n) {
-		milieu = (debut + fin) / 2;
-		if (strcmp(tableau[milieu]->nom, nom) == 0) {
-			trouver = 1;
-		}
-		else if (strcmp(tableau[milieu]->nom, nom) < 0){
-			debut = milieu + 1;
-		}
-		else{
-			fin = milieu - 1;
-		}
-	}
-
-	if (trouver == 1) {
-		printf("\n\nLe medicament %s est au rang %d du tableau", nom, milieu+1);
-	}
-	else {
-		printf("\n\nLe medicament n'est pas dans le tableau");
-	}
-}
-
-void plusCher(Medicament** tableau,int taille) {
-	if (tableau == NULL) {
-		return;
-	}
-	for (int i = 0; i < taille; i++) {
-		if (tableau[i] == NULL) {
-			return;
-		}
-	}
-
-	Medicament* plus_cher = tableau[0];
-	for (int i = 1; i < taille; i++) {
-		if (tableau[i]->prix > plus_cher->prix) {
-			plus_cher = tableau[i];
-		}
-	}
-	printf("\nLe medicament le plus cher est le %s", plus_cher->nom);
-}
-
-void taux(Medicament** tableau, int taille) {
-	if (tableau == NULL) {
-		return;
-	}
-	for (int i = 0; i < taille; i++) {
-		if (tableau[i] == NULL) {
-			return;
-		}
-	}
-	
-	int total=0;
-	int vendus=0;
-
-	for (int i = 0; i < taille; i++) {
-		total = total + tableau[i]->vendus + tableau[i]->stock;
-		vendus = vendus + tableau[i]->vendus;
-	}
-
-	int taux = (100 * vendus) / total;
-
-	printf("\nLe taux est de %d%%", taux);
+	i = j;
+	j = &temp;
 }
