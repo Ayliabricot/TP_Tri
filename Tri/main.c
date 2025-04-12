@@ -21,10 +21,7 @@ int main() {
 
 	afficher(*L);
 
-	for (int i = 0; i < taille; i++) {
-		free(L[i]);
-		L[i] = NULL;
-	}
+	libererMemoire(*L);
 	free(L);
 	L = NULL;
 

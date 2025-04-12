@@ -23,4 +23,6 @@ void tri_a_bulles_code(Medicament** medicament, int taille, int* swap);
 Medicament* comparer(Medicament** med1, Medicament** med2, int* swapped);
 void swap(Medicament* i, Medicament* j);
 
+void libererMemoire(Medicament* medicament);
+
 #endif

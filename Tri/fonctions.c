@@ -136,3 +136,12 @@ void swap(Medicament* i, Medicament* j) {
 	i = j;
 	j = &temp;
 }
+
+void libererMemoire(Medicament* medicament) {
+	if (medicament != NULL) {
+		libererMemoire(medicament->suivant);
+		free(medicament);
+		medicament = NULL;
+	}
+	return;
+}
