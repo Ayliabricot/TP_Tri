@@ -29,18 +29,18 @@ Etudiant* creerEtudiant(void) {
     printf("Veuillez saisir sa moyenne : ");
     scanf_s("%f", &moyenne);
 
-    Etudiant* Etudiant = malloc(sizeof(Etudiant));
+    Etudiant* etudiant = malloc(sizeof(Etudiant));
 
-    if (Etudiant == NULL) {
+    if (etudiant == NULL) {
         return;
     }
 
-    strcpy_s(Etudiant->nom, 50, nom);
-    strcpy_s(Etudiant->prenom, 50, prenom);
-    strcpy_s(Etudiant->matricule, 50, matricule);
-    Etudiant->moyenne = moyenne;
+    strcpy_s(etudiant->nom, 50, nom);
+    strcpy_s(etudiant->prenom, 50, prenom);
+    strcpy_s(etudiant->matricule, 50, matricule);
+    etudiant->moyenne = moyenne;
 
-    return Etudiant;
+    return etudiant;
 }
 
 void afficher(Etudiant** tableau, int taille) {

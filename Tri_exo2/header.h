@@ -10,7 +10,7 @@ typedef struct {
 
 Etudiant** creerTableau(int taille);
 Etudiant* creerEtudiant(void);
-void afficher(Etudiant** tableau, int taille);
 
+void afficher(Etudiant** tableau, int taille);
 
 #endif

@@ -4,7 +4,7 @@
 
 int main() {
 
-	int taille = 100;
+	int taille = 3;
 
 	Etudiant** tableau = creerTableau(taille);
 
