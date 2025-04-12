@@ -23,3 +23,9 @@ void tableauTrie(int* T1, int* T2, int* T3,int taille1, int taille2) {
 		}
 	}
 }
+
+void afficher(int* T, int taille) {
+	for (int i = 0; i < taille; i++) {
+		printf("%d ", T[i]);
+	}
+}

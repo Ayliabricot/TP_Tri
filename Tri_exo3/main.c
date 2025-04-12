@@ -14,9 +14,12 @@ int main() {
 	int* T3 = malloc((taille1 + taille2) * sizeof(int));
 	tableauTrie(T1, T2, T3, taille1, taille2);
 
-	for (int i = 0; i < 8; i++) {
-		printf("%d ", T3[i]);
-	}
+	printf("T1 : ");
+	afficher(T1, taille1);
+	printf("\nT2 : ");
+	afficher(T2, taille2);
+	printf("\nT3 : ");
+	afficher(T3, taille3);
 
 	free(T3);
 	T3 = NULL;
